@@ -1,0 +1,37 @@
+# Types scalaires GraphQL
+scalar String
+scalar Boolean
+scalar Float
+scalar Int
+
+type Query {
+    accountsList : [BankAccount],
+    bankAccountById(id: String) : BankAccount,
+    customersList : [Customer],
+    customerById(id: String) : Customer
+}
+type Mutation {
+    addAccount(bankAccount: BankAccountDTO) : BankAccount,
+    updateAccount(id: String, bankAccount: BankAccountDTO) : BankAccount,
+    deleteAccount(id: String) : Boolean
+}
+type BankAccount {
+    id: String,
+    createdAt : Float,
+    balance: Float,
+    currency: String,
+    type: String,
+    customer: Customer
+}
+
+type Customer {
+    id: Float,
+    name: String,
+    bankAccounts: [BankAccount]
+}
+input BankAccountDTO {
+    type: String,
+    balance: Float,
+    currency: String,
+    customerId: Float
+}
